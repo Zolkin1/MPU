@@ -18,6 +18,8 @@
    along with MPU.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#pragma once
+
 #include "MPU6x00.h"
 
 class MPU6000 : public MPU6x00 {

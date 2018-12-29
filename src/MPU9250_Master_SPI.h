@@ -18,6 +18,8 @@
    along with MPU.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#pragma once
+
 #include "MPU9250_Master.h"
 
 class MPU9250_Master_SPI : public MPU9250_Master {

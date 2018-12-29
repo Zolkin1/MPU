@@ -20,6 +20,8 @@
    along with MPU.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#pragma once
+
 #include "MPU.h"
 
 class MPU6xx0 : public MPUIMU {
