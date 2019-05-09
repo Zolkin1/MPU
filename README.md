@@ -22,7 +22,7 @@ The following sensors are currently supported:
 To use this library you will also need to clone the cross-platform support
 [library](https://github.com/simondlevy/CrossPlatformDataBus).
 
-The MPU6000 and 6500 communicate over the SPI buss. The MPU6050 communicates
+The MPU6000 and 6500 communicate over the SPI bus. The MPU6050 communicates
 over the I<sup>2</sup>C bus.  The MPU9250 is a bit more complicated: in
 <i>master mode</i> you access both sensors (MPU6500 accelerometer/gyrometer, AK8963 magnetometer)
 at once, over the I<sup>2</sup>C or SPI bus. In <i>pass-through mode</i> you
