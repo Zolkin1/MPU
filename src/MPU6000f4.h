@@ -29,7 +29,7 @@ class MPU6000 : public MPUIMU {
 
     protected:
 
-        virtual void readMPURegisters(uint8_t subAddress, uint8_t count, uint8_t * dest);
+        virtual void readMPURegisters(uint8_t subAddress, uint8_t count, uint8_t * dest) override;
 
         virtual void writeMPURegister(uint8_t subAddress, uint8_t data) override;
 
@@ -39,11 +39,8 @@ class MPU6000 : public MPUIMU {
 
         MPU6000::Error_t begin(void);
 
-        uint8_t getId();
-
         bool readAccel(int16_t & x, int16_t & y, int16_t & z);
 
         bool readGyro(int16_t & x, int16_t & y, int16_t & z);
-
 
 }; // class MPU6000

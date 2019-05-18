@@ -102,11 +102,6 @@ bool MPU6000::readGyro(int16_t & x, int16_t & y, int16_t & z)
     return true;
 }
 
-uint8_t MPU6000::getId()
-{
-    return readMPURegister(WHO_AM_I);  
-}
-
 void MPU6000::readMPURegisters(uint8_t subAddress, uint8_t count, uint8_t * dest)
 {
     spi_read_registers(subAddress, count, dest);
