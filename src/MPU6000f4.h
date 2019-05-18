@@ -188,11 +188,11 @@ class MPU6000 {
         float _accelBias[3];
         float _gyroBias[3];
 
-        uint8_t readRegister(uint8_t subAddress);
+        uint8_t readMPURegister(uint8_t subAddress);
 
-        void readRegisters(uint8_t subAddress, uint8_t count, uint8_t * dest);
+        void readMPURegisters(uint8_t subAddress, uint8_t count, uint8_t * dest);
 
-        void writeRegister(uint8_t subAddress, uint8_t data);
+        void writeMPURegister(uint8_t subAddress, uint8_t data);
 
     public:
 

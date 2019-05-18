@@ -39,35 +39,35 @@ MPU6000::Error_t MPU6000::begin(void)
     //    return ERROR_SELFTEST;
     //}
 
-    writeRegister(PWR_MGMT_1, 0x80);
+    writeMPURegister(PWR_MGMT_1, 0x80);
     delay(100);
 
-    writeRegister(SIGNAL_PATH_RESET, 0x80);
+    writeMPURegister(SIGNAL_PATH_RESET, 0x80);
     delay(100);
 
-    writeRegister(PWR_MGMT_1, 0x00);
+    writeMPURegister(PWR_MGMT_1, 0x00);
     delay(100);
 
-    writeRegister(PWR_MGMT_1, INV_CLK_PLL);
+    writeMPURegister(PWR_MGMT_1, INV_CLK_PLL);
     delay(15);
 
-    writeRegister(GYRO_CONFIG, _gScale << 3);
+    writeMPURegister(GYRO_CONFIG, _gScale << 3);
     delay(15);
 
-    writeRegister(ACCEL_CONFIG, _aScale << 3);
+    writeMPURegister(ACCEL_CONFIG, _aScale << 3);
     delay(15);
 
-    writeRegister(CONFIG, 0); // no DLPF bits
+    writeMPURegister(CONFIG, 0); // no DLPF bits
     delay(15);
 
-    writeRegister(SMPLRT_DIV, _sampleRateDivisor); 
+    writeMPURegister(SMPLRT_DIV, _sampleRateDivisor); 
     delay(100);
 
     // Data ready interrupt configuration
-    writeRegister(INT_PIN_CFG, 0x10);  
+    writeMPURegister(INT_PIN_CFG, 0x10);  
     delay(15);
 
-    writeRegister(INT_ENABLE, 0x01); 
+    writeMPURegister(INT_ENABLE, 0x01); 
     delay(15);
 
     _accelBias[0] = 0;
@@ -107,22 +107,22 @@ bool MPU6000::readGyro(int16_t & x, int16_t & y, int16_t & z)
 
 uint8_t MPU6000::getId()
 {
-    return readRegister(WHO_AM_I);  
+    return readMPURegister(WHO_AM_I);  
 }
 
-uint8_t MPU6000::readRegister(uint8_t subAddress)
+uint8_t MPU6000::readMPURegister(uint8_t subAddress)
 {
     uint8_t data;
-    readRegisters(subAddress, 1, &data);
+    readMPURegisters(subAddress, 1, &data);
     return data;
 }
 
-void MPU6000::readRegisters(uint8_t subAddress, uint8_t count, uint8_t * dest)
+void MPU6000::readMPURegisters(uint8_t subAddress, uint8_t count, uint8_t * dest)
 {
     spi_read_registers(subAddress, count, dest);
 }
 
-void MPU6000::writeRegister(uint8_t subAddress, uint8_t data)
+void MPU6000::writeMPURegister(uint8_t subAddress, uint8_t data)
 {
     spi_write_register(subAddress, data);
 }
