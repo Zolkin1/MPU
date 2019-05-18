@@ -22,11 +22,8 @@
 #include "MPU6000f4.h"
 #include "spi.h"
 
-MPU6000::MPU6000(Ascale_t ascale, Gscale_t gscale, uint8_t sampleRateDivisor)
+MPU6000::MPU6000(Ascale_t ascale, Gscale_t gscale, uint8_t sampleRateDivisor) : MPUIMU(ascale, gscale, sampleRateDivisor)
 {
-    _aScale =  ascale;
-    _gScale = gscale;
-    _sampleRateDivisor = sampleRateDivisor;
 }
 
 MPU6000::Error_t MPU6000::begin(void)
@@ -108,13 +105,6 @@ bool MPU6000::readGyro(int16_t & x, int16_t & y, int16_t & z)
 uint8_t MPU6000::getId()
 {
     return readMPURegister(WHO_AM_I);  
-}
-
-uint8_t MPU6000::readMPURegister(uint8_t subAddress)
-{
-    uint8_t data;
-    readMPURegisters(subAddress, 1, &data);
-    return data;
 }
 
 void MPU6000::readMPURegisters(uint8_t subAddress, uint8_t count, uint8_t * dest)
