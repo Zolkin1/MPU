@@ -21,11 +21,9 @@
 
 #pragma once
 
-//#include <stdint.h>
+#include "MPU6x00.h"
 
-#include "MPU.h"
-
-class MPU6000 : public MPUIMU {
+class MPU6000 : public MPU6x00 {
 
     protected:
 
