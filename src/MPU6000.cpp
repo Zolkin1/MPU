@@ -70,4 +70,20 @@ bool MPU6000::readGyroRaw(int16_t & x, int16_t & y, int16_t & z)
     return true;
 }
 
+void MPU6000::scaleRawAccel(int16_t xraw, int16_t yraw, int16_t zraw, float & x, float & y, float & z)
+{
+    // Convert the accleration value into g's
+    x = (float)xraw*_aRes - _accelBias[0];  
+    y = (float)yraw*_aRes - _accelBias[1];   
+    z = (float)zraw*_aRes - _accelBias[2];  
+}
+
+void MPU6000::scaleRawGyro(int16_t xraw, int16_t yraw, int16_t zraw, float & x, float & y, float & z)
+{
+    // Convert the gyro value into degrees per second
+    x = (float)xraw*_gRes;  
+    y = (float)yraw*_gRes;  
+    z = (float)zraw*_gRes; 
+}
+
 

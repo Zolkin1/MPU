@@ -32,9 +32,11 @@ class MPU6000 : public MPU6x00 {
 
         void readGyrometer(float & gx, float & gy, float & gz);
 
+        // Currently necessary for F4 controllers only
         bool readAccelRaw(int16_t & x, int16_t & y, int16_t & z);
-
         bool readGyroRaw(int16_t & x, int16_t & y, int16_t & z);
+        void scaleRawAccel(int16_t xraw, int16_t yraw, int16_t zraw, float & x, float & y, float & z);
+        void scaleRawGyro(int16_t xraw, int16_t yraw, int16_t zraw, float & x, float & y, float & z);
 
     protected:
 
