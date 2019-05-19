@@ -32,6 +32,10 @@ class MPU6000 : public MPU6x00 {
 
         void readGyrometer(float & gx, float & gy, float & gz);
 
+        bool readAccelRaw(int16_t & x, int16_t & y, int16_t & z);
+
+        bool readGyroRaw(int16_t & x, int16_t & y, int16_t & z);
+
     protected:
 
         virtual void readMPURegisters(uint8_t subAddress, uint8_t count, uint8_t * dest) override;

@@ -42,3 +42,32 @@ void MPU6000::readMPURegisters(uint8_t subAddress, uint8_t count, uint8_t * dest
 {
     cpspi_readRegisters(subAddress, count, dest);
 }
+
+bool MPU6000::readAccelRaw(int16_t & x, int16_t & y, int16_t & z)
+{
+    uint8_t data[6];
+
+    if (!cpspi_readRegisters(ACCEL_XOUT_H, 6, data)) return false;
+
+    x = (int16_t)((data[0] << 8) | data[1]);
+    y = (int16_t)((data[2] << 8) | data[3]);
+    z = (int16_t)((data[4] << 8) | data[5]);
+
+    return true;
+}
+
+bool MPU6000::readGyroRaw(int16_t & x, int16_t & y, int16_t & z)
+{
+    static const uint8_t send[7] = {GYRO_XOUT_H | 0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+    uint8_t recv[7];
+
+    if (!cpspi_transfer(send, recv, 7)) return false;
+
+    x = (int16_t)((recv[1] << 8) | recv[2]);
+    y = (int16_t)((recv[3] << 8) | recv[4]);
+    z = (int16_t)((recv[5] << 8) | recv[6]);
+
+    return true;
+}
+
+
